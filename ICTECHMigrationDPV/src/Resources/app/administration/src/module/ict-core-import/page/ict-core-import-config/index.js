@@ -1,0 +1,201 @@
+import template from './ict-core-import-config.html.twig';
+import './ict-core-import-config.scss';
+
+const {Component, Mixin} = Shopware;
+
+Component.register('ict-core-import-config', {
+    template,
+
+    inject: [
+        'repositoryFactory',
+        'configService',
+        'systemConfigApiService',
+        'documentService'
+    ],
+
+    mixins: [
+        Mixin.getByName('notification'),
+    ],
+
+    data() {
+        return {
+            isLoading: false,
+            isProductLoading: false,
+            isCategoryLoading: false,
+            isVariantLoading: false,
+            isVariantPartLoading: false,
+            importProduct: null,
+            totalProduct: null,
+            importProductMessage: null,
+            incrementalValue: null,
+            importCategoryMessage: null,
+            importCategoryCount: null,
+            totalCategory: null,
+            importVariant: null,
+            totalVariant: null,
+            importVariantMessage: null,
+            importVariantPartMessage: null
+        }
+    },
+    methods: {
+        propertyFunction(value) {
+            let headers = this.configService.getBasicHeaders();
+
+            let data = new FormData();
+            data.append('startingValue', value);
+
+            return this.configService.httpClient.post('/_action/migration/property', data, {headers})
+                .then((response) => {
+                    this.isLoading = false;
+
+                    this.createNotificationSuccess({
+                        title: response.data.type,
+                        message: response.data.message
+                    });
+                    if (response.data.type == "Pending") {
+                        this.propertyFunction(response.data.message);
+                    }
+                    if (response.data.type == "Success") {
+                        this.incrementalValue = response.data.message;
+                    }
+
+                })
+                .catch((exception) => {
+                    this.isLoading = false;
+                });
+        },
+
+        importMainProduct() {
+            this.isProductLoading = true;
+            let headers = this.configService.getBasicHeaders();
+
+            let data = new FormData();
+            data.append('type', 'main_product');
+
+            return this.configService.httpClient.post('/_action/migration/mainproduct', data, {headers})
+                .then((response) => {
+                    this.isLoading = false;
+                    this.isProductLoading = false;
+                    let data = response.data;
+                    if (data.type === 'Pending') {
+                        this.importProduct = data.importProduct;
+                        this.totalProduct = data.totalProduct;
+                        this.importProductMessage = this.importProduct + ' ' + this.$tc('ict-core-import-config.detail.totalImportText') + ' ' + this.totalProduct + ' ' + this.$tc('ict-core-import-config.detail.mainProduct');
+                        this.importMainProduct();
+                    } else if (data.type === 'Error') {
+                        this.createNotificationError({
+                            title: response.data.type,
+                            message: response.data.message
+                        });
+                    } else {
+                        this.createNotificationSuccess({
+                            title: response.data.type,
+                            message: response.data.message
+                        });
+                    }
+                })
+                .catch((exception) => {
+                    this.isLoading = false;
+                });
+        },
+
+        importCategory() {
+            this.isCategoryLoading = true;
+            let headers = this.configService.getBasicHeaders();
+
+            let data = new FormData();
+            data.append('type', 'category');
+
+            return this.configService.httpClient.post('/_action/migration/addcategory', data, {headers})
+                .then((response) => {
+                    this.isLoading = false;
+                    this.isCategoryLoading = false;
+                    let data = response.data;
+                    if (data.type === 'Pending') {
+                        this.importCategoryCount = data.importCategoryCount;
+                        this.totalCategory = data.totalCategory;
+                        this.importCategoryMessage = this.importCategoryCount + ' ' + this.$tc('ict-core-import-config.detail.totalImportText') + ' ' + this.totalCategory + ' ' + this.$tc('ict-core-import-config.detail.category');
+                        this.importCategory();
+                    } else {
+                        this.createNotificationSuccess({
+                            title: response.data.type,
+                            message: response.data.message
+                        });
+                    }
+                })
+                .catch((exception) => {
+                    this.isLoading = false;
+                });
+        },
+
+        importVariantProduct() {
+            this.isVariantLoading = true;
+            let headers = this.configService.getBasicHeaders();
+
+            let data = new FormData();
+            data.append('type', 'variant product');
+
+            return this.configService.httpClient.post('/_action/migration/addvariantproduct', data, {headers})
+                .then((response) => {
+                    this.isLoading = false;
+                    this.isVariantLoading = false;
+                    let data = response.data;
+                    if (data.type === 'Pending') {
+                        this.importVariant = data.importVariant;
+                        this.totalVariant = data.totalVariant;
+                        this.importVariantMessage = this.importVariant + ' ' + this.$tc('ict-core-import-config.detail.totalImportText') + ' ' + this.totalVariant + ' ' + this.$tc('ict-core-import-config.detail.productVariant');
+                        this.importVariantProduct();
+                    } else if (data.type === 'Error') {
+                        this.createNotificationError({
+                            title: response.data.type,
+                            message: response.data.message
+                        });
+                    } else {
+                        this.variantOffSet = 0;
+                        this.createNotificationSuccess({
+                            title: response.data.type,
+                            message: response.data.message
+                        });
+                    }
+                })
+                .catch((exception) => {
+                    this.isLoading = false;
+                });
+        },
+
+        importVariantProductParts() {
+            this.isVariantPartLoading = true;
+            let headers = this.configService.getBasicHeaders();
+
+            let data = new FormData();
+            data.append('type', 'variant product');
+
+            return this.configService.httpClient.post('/_action/migration/addvariantproductpart', data, {headers})
+                .then((response) => {
+                    this.isLoading = false;
+                    this.isVariantPartLoading = false;
+                    let data = response.data;
+                    if (data.type === 'Pending') {
+                        this.importVariant = data.importVariant;
+                        this.totalVariant = data.totalVariant;
+                        this.importVariantPartMessage = this.importVariant + ' ' + this.$tc('ict-core-import-config.detail.totalImportText') + ' ' + this.totalVariant + ' ' + this.$tc('ict-core-import-config.detail.productVariantPart');
+                        this.importVariantProductParts();
+                    } else if (data.type === 'Error') {
+                        this.createNotificationError({
+                            title: response.data.type,
+                            message: response.data.message
+                        });
+                    } else {
+                        this.variantOffSet = 0;
+                        this.createNotificationSuccess({
+                            title: response.data.type,
+                            message: response.data.message
+                        });
+                    }
+                })
+                .catch((exception) => {
+                    this.isLoading = false;
+                });
+        }
+    }
+})

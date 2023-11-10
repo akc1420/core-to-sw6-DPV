@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Settings</title>
+        <title lang="de-DE">Einstellungen</title>
+
+        <input-field type="text">
+            <name>databaseHost</name>
+            <label>Database Host</label>
+            <label lang="de-DE">Datenbank-Host</label>
+        </input-field>
+
+        <input-field type="text">
+            <name>databaseUser</name>
+            <label>Database Username</label>
+            <label lang="de-DE">Datenbank-Benutzername</label>
+        </input-field>
+
+        <input-field type="text">
+            <name>databasePassword</name>
+            <label>Database Password</label>
+            <label lang="de-DE">Datenbank-Passwort</label>
+        </input-field>
+
+        <input-field type="url">
+            <name>baseUrlForUploadImage</name>
+            <label>BaseUrl For Upload Image</label>
+            <label lang="de-DE">BaseUrl für Bild hochladen</label>
+            <helpText>Example: https://www.abcd.com/add path to media folder/</helpText>
+            <helpText lang="de-DE">Beispiel: https://www.abcd.com/Pfad zum Medienordner hinzufügen/</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>databaseName</name>
+            <label>Database Name</label>
+            <label lang="de-DE">Name der Datenbank</label>
+        </input-field>
+
+        <input-field type="text">
+            <name>categoryCount</name>
+            <defaultValue>0</defaultValue>
+<!--            <disabled>true</disabled>-->
+            <label>Category Count</label>
+            <label lang="de-DE">Kategorie Zählung</label>
+        </input-field>
+
+        <input-field type="text">
+            <name>mainProductCount</name>
+            <defaultValue>0</defaultValue>
+<!--            <disabled>true</disabled>-->
+            <label>Main Product Count</label>
+            <label lang="de-DE">Anzahl der Hauptprodukte</label>
+        </input-field>
+
+        <input-field type="text">
+            <name>variantProductCount</name>
+            <defaultValue>0</defaultValue>
+<!--            <disabled>true</disabled>-->
+            <label>Variant Product Count</label>
+            <label lang="de-DE">Variante Produktanzahl</label>
+        </input-field>
+
+
+           <input-field type="text">
+            <name>variantProductPartCount</name>
+            <defaultValue>0</defaultValue>
+<!--            <disabled>true</disabled>-->
+            <label>Variant Product part Count</label>
+            <label lang="de-DE">Variante Produkt Teilanzahl</label>
+        </input-field>
+    </card>
+</config>

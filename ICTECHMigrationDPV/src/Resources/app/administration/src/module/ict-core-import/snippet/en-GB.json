@@ -1,0 +1,26 @@
+{
+    "ict-core-import-config": {
+        "general": {
+            "mainMenuItemGeneral": "Import Data",
+            "descriptionTextModule": "Import Data"
+        },
+        "detail": {
+            "property": "Properties",
+            "propertyValue": "Properties Values",
+            "category": "Categories",
+            "productVariant": "Variant Products",
+            "productVariantPart": "Product Parts",
+            "mainProduct": "Main Products",
+            "categoryText": "Click button for Category Import",
+            "mainProductText": "Click button for Main Product Import",
+            "productVariantText": "Click button for Variant Product Import",
+            "productPartVariantText": "Click button for Product Parts Import",
+            "totalImportText": "import From total"
+        }
+    },
+    "sw-settings-custom-field": {
+        "types": {
+            "html": "Text editor"
+        }
+    }
+}

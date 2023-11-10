@@ -1,0 +1,22 @@
+{
+  "name": "ictech/migration-dvp",
+  "description": "Core Migration",
+  "type": "shopware-platform-plugin",
+  "license": "proprietary",
+  "version": "v1.0.0",
+  "autoload": {
+    "psr-4": {
+      "ICTECHMigrationDPV\\": "src/"
+    }
+  },
+  "require": {
+    "shopware/core": "6.5.*"
+  },
+  "extra": {
+    "shopware-plugin-class": "ICTECHMigrationDPV\\ICTECHMigrationDPV",
+    "label": {
+      "de-DE": "Kern Migration DVP",
+      "en-GB": "Core Migration DVP"
+    }
+  }
+}

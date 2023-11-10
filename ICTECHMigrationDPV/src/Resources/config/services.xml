@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <!-- Start Category Controller -->
+        <service id="ICTECHMigrationDPV\Controller\CategoryController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="language.repository"/>
+            <argument type="service" id="category.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <!-- End Category Controller -->
+
+        <!-- Start Main Product Controller -->
+        <service id="ICTECHMigrationDPV\Controller\MainProductController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="language.repository"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="tax.repository"/>
+            <argument type="service" id="tag.repository"/>
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="product_media.repository"/>
+            <argument type="service" id="Shopware\Core\Content\Media\MediaService" />
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileSaver" />
+            <argument type="service" id="media_thumbnail_size.repository" />
+            <argument type="service" id="media_folder.repository" />
+            <argument type="service" id="sales_channel.repository" />
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="rule.repository"/>
+            <argument type="service" id="product_price.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <!-- End Main Product Controller -->
+
+        <!-- Start Variant Product Controller -->
+        <service id="ICTECHMigrationDPV\Controller\VariantProductController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="language.repository"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="product_media.repository"/>
+            <argument type="service" id="Shopware\Core\Content\Media\MediaService" />
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileSaver" />
+            <argument type="service" id="media_thumbnail_size.repository" />
+            <argument type="service" id="media_folder.repository" />
+            <argument type="service" id="property_group.repository" />
+            <argument type="service" id="property_group_option.repository" />
+            <argument type="service" id="rule.repository"/>
+            <argument type="service" id="product_price.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="ICTECHMigrationDPV\Controller\VariantProductPartsController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="language.repository"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="product_media.repository"/>
+            <argument type="service" id="Shopware\Core\Content\Media\MediaService" />
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileSaver" />
+            <argument type="service" id="media_thumbnail_size.repository" />
+            <argument type="service" id="media_folder.repository" />
+            <argument type="service" id="property_group.repository" />
+            <argument type="service" id="property_group_option.repository" />
+            <argument type="service" id="rule.repository"/>
+            <argument type="service" id="product_price.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        
+        <!-- End Variant Product Controller -->
+
+    </services>
+</container>

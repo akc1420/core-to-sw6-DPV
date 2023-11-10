@@ -1,0 +1,26 @@
+{
+    "ict-core-import-config": {
+        "general": {
+            "mainMenuItemGeneral": "Daten importieren",
+            "descriptionTextModule": "Daten importieren"
+        },
+        "detail": {
+            "property": "Eigenschaften",
+            "propertyValue": "Eigenschaften Werte",
+            "category": "Kategorien",
+            "mainProduct": "Wichtigste Produkte",
+            "productVariant": "Produkt-Varianten",
+            "productVariantPart": "Produkt Teile",
+            "categoryText": "Klicken Sie auf die Schaltfläche für Kategorieimport",
+            "mainProductText": "Klicken Sie auf die Schaltfläche für den Hauptproduktimport",
+            "productVariantText": "Klicken Sie auf die Schaltfläche für Variantenproduktimport",
+            "productPartVariantText": "Klicken Sie auf die Schaltfläche für den Import von Produktteilen",
+            "totalImportText": "importieren Von insgesamt"
+        }
+    },
+    "sw-settings-custom-field": {
+        "types": {
+            "html": "Text-Editor"
+        }
+    }
+}

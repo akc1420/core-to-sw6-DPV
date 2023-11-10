@@ -1,0 +1,88 @@
+{% block ict_core_import_config %}
+    <sw-page class="ict-core-import-config">
+        {% block ict_core_import_config_header %}
+            <template #smart-bar-header>
+                <h2>
+                    {{ $tc('ict-core-import-config.general.mainMenuItemGeneral') }}
+                </h2>
+            </template>
+        {% endblock %}
+        {% block ict_core_import_config_content %}
+            <template #content>
+                {% block ict_core_import_config_content_card %}
+                    <sw-card-view>
+                        {% block ict_core_import_config_content_card_innter %}
+                            <sw-card>
+                                <p class="sw_text-info__info">{{ $tc('ict-core-import-config.detail.categoryText') }}</p>
+                                <sw-button
+                                        @click="importCategory()"
+                                        ref="ictCoreImportConfigContentCategory"
+                                        id="ict_core_import_config_content_category"
+                                        variant="primary"
+                                        :square="false"
+                                        :block="false"
+                                        :isLoading="isCategoryLoading"
+                                        :disabled="isProductLoading || isVariantLoading || isVariantPartLoading"
+                                >
+                                    {{ $tc('ict-core-import-config.detail.category') }}
+                                </sw-button>
+                                {{ importCategoryMessage }}
+                            </sw-card>
+                            <sw-card>
+                                <p class="sw_text-info__info">{{ $tc('ict-core-import-config.detail.mainProductText') }}</p>
+                                <sw-button
+                                        @click="importMainProduct()"
+                                        ref="ictCoreImportConfigContentMainProduct"
+                                        id="ict_core_import_config_content_main_product"
+                                        variant="primary"
+                                        :square="false"
+                                        :block="false"
+                                        :isLoading="isProductLoading"
+                                        :disabled="isCategoryLoading || isVariantLoading || isVariantPartLoading"
+                                >
+                                    {{ $tc('ict-core-import-config.detail.mainProduct') }}
+                                </sw-button>
+                                {{ importProductMessage }}
+
+                            </sw-card>
+                            <sw-card>
+                                <p class="sw_text-info__info">{{ $tc('ict-core-import-config.detail.productVariantText') }}</p>
+                                <sw-button
+                                        @click="importVariantProduct()"
+                                        ref="ictCoreImportConfigContentProductVariant"
+                                        id="ict_core_import_config_content_product_variant"
+                                        variant="primary"
+                                        :square="false"
+                                        :block="false"
+                                        :isLoading="isVariantLoading"
+                                        :disabled="isCategoryLoading || isProductLoading || isVariantPartLoading"
+                                >
+                                    {{ $tc('ict-core-import-config.detail.productVariant') }}
+                                </sw-button>
+                                {{ importVariantMessage }}
+                            </sw-card>
+
+                            <sw-card>
+                                <p class="sw_text-info__info">{{ $tc('ict-core-import-config.detail.productPartVariantText') }}</p>
+                                <sw-button
+                                        @click="importVariantProductParts()"
+                                        ref="ictCoreImportConfigContentProductVariant"
+                                        id="ict_core_import_config_content_product_variant"
+                                        variant="primary"
+                                        :square="false"
+                                        :block="false"
+                                        :isLoading="isVariantPartLoading"
+                                        :disabled="isCategoryLoading || isProductLoading"
+                                >
+                                {{ $tc('ict-core-import-config.detail.productVariantPart') }}
+                                </sw-button>
+                                {{ importVariantPartMessage }}
+                            </sw-card>
+                        {% endblock %}
+                        </sw-card>
+                    </sw-card-view>
+                {% endblock %}
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}
